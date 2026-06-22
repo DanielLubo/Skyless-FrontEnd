@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# Skyless - E-commerce de Manillas Artesanales
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Skyless es una aplicación web moderna orientada al comercio electrónico de manillas artesanales hechas a mano. Este proyecto nació como una propuesta a la necesidad de una aplicación web funcional para el comercio electrónico de la marca Skyless, para ello se creó este proyecto utilizando el ecosistema moderno de React.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Typescript
+- Tailwind CSS
 
-## React Compiler
+## Instalacion y Configuracion
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Clonar el Repositoio**
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+    git clone https://github.com/DanielLubo/Skyless-FrontEnd.git
+    cd Skyless
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Instalar Dependencias**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+    pnpm install
 ```
+
+3. **Correr el Proyecto en local**
+```bash
+    pnpm dev
+```
+
+## Estructura del Proyecto
+skyless/
+├── public/
+│   └── images/             # Imágenes estáticas de productos
+│ 
+├── src/
+│   ├── assets/             # Fuentes, íconos SVG propios
+│   │     
+│   ├── components/         # Componentes GLOBALES
+│   │   └── ui/             # Componentes base
+│   │
+│   ├── data/
+│   │   └── products.json
+│   │
+│   ├── features/
+│   │   ├── auth/            
+│   │   ├── catalog/         
+│   │   ├── product/         
+│   │   ├── cart/            
+│   │   ├── checkout/        
+│   │   └── profile/         
+│   │
+│   ├── hooks/              # Custom hooks GLOBALES
+│   │
+│   ├── lib/                # Utilidades puras
+│   │       
+│   ├── router/             # Configuración de React Router
+│   │   └── index.tsx
+│   │
+│   ├── store/              # Estado global
+│   │
+│   ├── types/              # Interfaces TypeScript globales: Product, User, 
+│   │
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│   
+├── .gitignore
+├── index.html
+├── package.json
+├── pnpm-lock.yaml
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+## Estado Actual del Proyecto
+(En desarrollo)
+
+## Desarrollador
+Daniel Felipe Lubo - Estudiante de Tecnologia en Desarrollo de Software - https://github.com/DanielLubo

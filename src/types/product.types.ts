@@ -2,7 +2,7 @@ import type { Collection } from './collection.types';
 import type { BaseGender } from './common.types';
 import type { ReviewProduct } from './reviewProduct.types';
 
-export type ProductGender = BaseGender | 'Pareja'
+export type ProductGender = BaseGender | 'Pareja';
 
 export interface Product {
     id: string;
@@ -10,6 +10,7 @@ export interface Product {
     name: string;
     description: string;
     price: number;
+    unitsAvailable: number;
     reviews: ReviewProduct[];
     images: string[];
     materials: string[];

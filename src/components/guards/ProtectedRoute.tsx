@@ -1,7 +1,10 @@
 import { Navigate, Outlet } from 'react-router';
+import { useAuth } from '../../store/auth/useAuth';
 
 const ProtectedRoute = () => {
-    const isAuthenticated = false;
+    const { user } = useAuth();
+    const isAuthenticated = !!user;
+
     return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 

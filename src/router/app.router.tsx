@@ -3,6 +3,8 @@ import LandingPage from '../features/landing/LandingPage';
 import ProtectedRoute from '../components/guards/ProtectedRoute';
 import GuestRoute from '../components/guards/GuestRoute';
 import CartRoute from '../components/guards/CartRoute';
+import LoginPage from '../features/auth/LoginPage';
+import RegisterPage from '../features/auth/RegisterPage';
 
 export const appRouter = createBrowserRouter([
     {
@@ -26,11 +28,11 @@ export const appRouter = createBrowserRouter([
                 children: [
                     {
                         path: 'login',
-                        element: <div>Login</div>,
+                        element: <LoginPage />,
                     },
                     {
                         path: 'register',
-                        element: <div>Register</div>,
+                        element: <RegisterPage />,
                     },
                 ],
             },

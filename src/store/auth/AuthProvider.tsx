@@ -21,16 +21,20 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
         email: string,
         password: string
     ): Promise<{ success: boolean; message?: string }> => {
+        // Obtenemos primero el array del localStorage
         const raw = localStorage.getItem(USERS_MOCK_KEY);
+
         // Si no se obtiene nada del localStorage iniciamos un array vacio
         const mockUsers: MockUser[] =
             raw === null ? [] : (JSON.parse(raw) as MockUser[]);
 
+        // Buscamos a un usuario si existe y sus atributos de email y password son correctos
         const searchedUser: MockUser | undefined = mockUsers.find(
             (mockUser) =>
                 mockUser.email === email && mockUser.password === password
         );
 
+        // Si no se encuentra nada retornamos un mensaje de error y el "estado" en false
         if (searchedUser === undefined) {
             return {
                 success: false,
@@ -58,6 +62,42 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
         };
     };
 
+    const register = async (
+        name: string,
+        email: string,
+        password: string
+    ): Promise<{ success: boolean; message?: string }> => {
+        const raw = localStorage.getItem(USERS_MOCK_KEY);
+
+        const mockUsers: MockUser[] =
+            raw === null ? [] : (JSON.parse(raw) as MockUser[]);
+
+        const emailUserDuplicated = mockUsers.find(
+            (user) => user.email === email
+        );
+
+        if (emailUserDuplicated) {
+            return {
+                success: false,
+                message: 'El correo ingresado ya esta en uso',
+            };
+        }
+
+        const newMockUser: MockUser = {
+            id: crypto.randomUUID(),
+            name,
+            email,
+            password,
+        };
+
+        mockUsers.push(newMockUser);
+
+        const jsonMockUsers = JSON.stringify(mockUsers);
+        localStorage.setItem(USERS_MOCK_KEY, jsonMockUsers);
+
+        return await login(email, password);
+    };
+
     // Metodo Logout
     const logout = () => {
         localStorage.removeItem(AUTH_USER_KEY);
@@ -65,7 +105,7 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, register, logout }}>
             {children}
         </AuthContext.Provider>
     );

@@ -25,6 +25,22 @@ export const appRouter = createBrowserRouter([
                 element: <div>Product Detail</div>,
             },
             {
+                path: 'men',
+                element: <div>Men</div>,
+            },
+            {
+                path: 'women',
+                element: <div>Woman</div>,
+            },
+            {
+                path: 'sale',
+                element: <div>Sale</div>,
+            },
+            {
+                path: 'contact',
+                element: <div>Contact</div>,
+            },
+            {
                 element: <GuestRoute />,
                 children: [
                     {

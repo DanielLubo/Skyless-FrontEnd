@@ -1,42 +1,39 @@
 import { useAuth } from '../../store/auth/useAuth';
 import { Link } from 'react-router';
 
+type Links = {
+    name: string;
+    path: string;
+};
+
+const mockupLinks: Links[] = [
+    { name: 'Inicio', path: '/' },
+    { name: 'Hombre', path: '/men' },
+    { name: 'Mujer', path: '/women' },
+    { name: 'Sale', path: '/sale' },
+    { name: 'Contacto', path: '/contact' },
+];
+
 const Navbar = () => {
-    const { user, logout } = useAuth();
+    const { user } = useAuth();
 
     return (
         <nav>
             <div>
-                <h2>Skiless</h2>
+                <h2>Skyless</h2>
             </div>
             <ul>
-                <li>
-                    <Link to="/">Inicio</Link>
-                </li>
-                <li>
-                    <Link to="/men">Hombre</Link>
-                </li>
-                <li>
-                    <Link to="/women">Mujer</Link>
-                </li>
-                <li>
-                    <Link to="/sale">Sale</Link>
-                </li>
-                <li>
-                    <Link to="/contact">Contacto</Link>
-                </li>
+                {mockupLinks.map((item) => (
+                    <Link key={item.path} to={item.path}>
+                        {item.name}
+                    </Link>
+                ))}
             </ul>
             <div>
                 {user === null ? (
                     <Link to="/login">Iniciar Sesion</Link>
                 ) : (
-                    <Link to="/profile">Mi Perfil</Link>
-                )}
-
-                {!!user && (
-                    <button type="button" onClick={logout}>
-                        Cerrar Sesion
-                    </button>
+                    <Link to="/profile">{user.name}</Link>
                 )}
             </div>
         </nav>

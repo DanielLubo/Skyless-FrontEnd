@@ -1,15 +1,16 @@
-import { createBrowserRouter, Outlet } from 'react-router';
+import { createBrowserRouter } from 'react-router';
 import LandingPage from '../features/landing/LandingPage';
 import ProtectedRoute from '../components/guards/ProtectedRoute';
 import GuestRoute from '../components/guards/GuestRoute';
 import CartRoute from '../components/guards/CartRoute';
 import LoginPage from '../features/auth/LoginPage';
 import RegisterPage from '../features/auth/RegisterPage';
+import MainLayout from '../components/layout/MainLayout';
 
 export const appRouter = createBrowserRouter([
     {
         path: '/',
-        element: <Outlet />,
+        element: <MainLayout />,
         children: [
             {
                 index: true,

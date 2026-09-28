@@ -6,6 +6,7 @@ import CartRoute from '../components/guards/CartRoute';
 import LoginPage from '../features/auth/LoginPage';
 import RegisterPage from '../features/auth/RegisterPage';
 import MainLayout from '../components/layout/MainLayout';
+import AuthLayout from '../components/layout/AuthLayout';
 
 export const appRouter = createBrowserRouter([
     {
@@ -41,19 +42,6 @@ export const appRouter = createBrowserRouter([
                 element: <div>Contact</div>,
             },
             {
-                element: <GuestRoute />,
-                children: [
-                    {
-                        path: 'login',
-                        element: <LoginPage />,
-                    },
-                    {
-                        path: 'register',
-                        element: <RegisterPage />,
-                    },
-                ],
-            },
-            {
                 element: <CartRoute />,
                 children: [
                     {
@@ -68,6 +56,24 @@ export const appRouter = createBrowserRouter([
                     {
                         path: 'profile',
                         element: <div>Profile</div>,
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        element: <AuthLayout />,
+        children: [
+            {
+                element: <GuestRoute />,
+                children: [
+                    {
+                        path: 'login',
+                        element: <LoginPage />,
+                    },
+                    {
+                        path: 'register',
+                        element: <RegisterPage />,
                     },
                 ],
             },

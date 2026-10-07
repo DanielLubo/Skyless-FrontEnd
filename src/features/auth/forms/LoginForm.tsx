@@ -4,13 +4,14 @@ import { loginSchema } from '../schemas/login.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '../../../store/auth/useAuth';
 import { z } from 'zod';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import googleIcon from '../../../assets/google.png';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
     const [messageError, setMessageError] = useState<string | undefined>('');
+    const [visiblePassword, setVisiblePassword] = useState(false);
     const { login } = useAuth();
 
     const { register, handleSubmit, formState } = useForm({
@@ -81,10 +82,18 @@ const LoginForm = () => {
                     <input
                         id="password"
                         {...register('password')}
-                        type="password"
+                        type={visiblePassword ? 'text' : 'password'}
                         placeholder="Ingresa tu contraseña"
-                        className="w-full py-3.5 pl-12 pr-4 text-lg bg-white rounded-full shadow-lg border border-brand-dark/10 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+                        className="w-full py-3.5 pl-12 pr-12 text-lg bg-white rounded-full shadow-lg border border-brand-dark/10 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-primary"
                     />
+                    <button
+                        type="button"
+                        aria-label="Mostrar u ocultar contraseña"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-dark cursor-pointer"
+                        onClick={() => setVisiblePassword(!visiblePassword)}
+                    >
+                        {visiblePassword ? <Eye /> : <EyeOff />}
+                    </button>
                 </div>
                 {errors.password && (
                     <p className="text-sm text-red-600">
